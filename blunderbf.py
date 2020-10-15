@@ -30,12 +30,12 @@ def force(target_url, username, password):
 def main():
     try:
         target_ip = argv[1]
-        my_passlist = open(argv[2], "r+", encoding="utf-8")
-        my_userlist = open(argv[3], "r+", encoding="utf-8")
+        my_passlist = argv[2]
+        my_userlist = argv[3]
 
-        with my_userlist as userlist:
+        with open(my_userlist, "r", encoding="utf-8") as userlist:
             for username in userlist:
-                with my_passlist as passlist:
+                with open(my_passlist, "r", encoding="utf-8") as passlist:
                     for password in passlist:
                         force(target_ip.strip(), username.strip(), password.strip())
     
